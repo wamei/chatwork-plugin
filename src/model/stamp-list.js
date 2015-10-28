@@ -7,7 +7,6 @@ const stampDescription = 'Shiftで削除、⌘ですぐ送信';
 
 export default class StampList {
     constructor() {
-        this.base = Settings.get('w-stamp-url');
         this.update();
     }
 
@@ -37,10 +36,11 @@ export default class StampList {
     }
 
     update() {
+        let base = Settings.get('w-stamp-url');
         let list = Settings.get('w-stamp-list', []);
         let ret = {};
         for (var i = 0; i < list.length; i++) {
-            ret[list[i]] =new Stamp(this.base, list[i]);
+            ret[list[i]] =new Stamp(base, list[i]);
         }
         this.list = ret;
         return ret;

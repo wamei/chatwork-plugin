@@ -23,6 +23,11 @@ export var set = function(key, value) {
     return value;
 };
 
+export var remove = function(key) {
+    window.localStorage.removeItem(key);
+    delete settings[key];
+};
+
 export var addCheckBox = function(key, label, $parent, save, defaultValue) {
     let flag = get(key);
 

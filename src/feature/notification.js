@@ -42,7 +42,8 @@ export function isIgnoredRoom(roomId) {
     return false;
 }
 
-export function addIgnoreButton($el, rid) {
+export function addIgnoreButton(htmlString, rid) {
+    let $el = $(htmlString);
     let n = $('<img style="cursor:pointer;position:relative;background:transparent;border:none;box-shadow:none;" class="_showDescription w_notifier w_'+rid+'" data-rid="'+rid+'" width="14px" height="14px" aria-label="通知機能のON/OFFが行えます">');
 
     let list = Settings.get('w-ignored-room-list', []);
@@ -53,7 +54,7 @@ export function addIgnoreButton($el, rid) {
     }
 
     $el.find('.chatListTitleArea').prepend(n);
-    return $el;
+    return $el.wrap('<p>').parent().html();
 }
 
 $('#_roomListArea').on('click', 'img.w_notifier', function() {

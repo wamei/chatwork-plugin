@@ -5,7 +5,7 @@ import * as Stamp from '../feature/stamp.js';
 $(function () {
     let oldGMP = TimeLineView.prototype.getMessagePanel;
     TimeLineView.prototype.getMessagePanel = function (a, b) {
-        return Stamp.replace(InlineImage.expandImage($(oldGMP.apply(this, arguments))));
+        return Stamp.replace(InlineImage.replace(oldGMP.apply(this, arguments)));
     };
 
     let oldRTL = TimeLineView.prototype.renderTimeLine;

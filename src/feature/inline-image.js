@@ -4,7 +4,8 @@ import * as Settings from '../feature/settings.js';
 
 var ImageCollection = {};
 
-export function expandImage($el) {
+export function replace(htmlString) {
+    let $el = $(htmlString);
     let timeline = $('#_timeLine');
     if (Settings.get('w-inline-image')) {
         let conditions = Settings.get('w-inline-image-domain').split(' ');

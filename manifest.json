@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "Wameiz Chatwork Plugin",
+    "version": "0.0.1",
+    "description": "チャットワークをなんか色々拡張しちゃう",
+    "content_scripts": [{
+        "matches": [
+            "https://kcw.kddi.ne.jp/*",
+            "https://www.chatwork.com/*"
+        ],
+        "js": [
+            "built/load.js"
+        ],
+        "run_at": "document_start"
+    }],
+    "web_accessible_resources": [
+        "built/bundle.js",
+        "built/bundle.css"
+    ]
+}

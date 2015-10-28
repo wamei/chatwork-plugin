@@ -1,0 +1,72 @@
+.menuListTitle > li {
+  font-size: 12px !important;
+  font-family: 'Lucida Grande', sans-serif !important;
+  padding: 1px !important;
+  overflow: hidden !important;
+  word-break: break-all !important;
+}
+
+.menuListTitle > li .roomIcon img {
+  position: absolute !important;
+  top: 2px !important;
+  left: 5px !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.menuListTitle > li .chatListMeta {
+  position: static !important;
+  padding-right: 30px !important;
+}
+
+.menuListTitle > li .chatListMeta .chatListTitleArea {
+  white-space: normal !important;
+  line-height: 16px !important;
+  overflow: hidden !important;
+  word-wrap: break-word !important;
+}
+
+.menuListTitle > li .chatListMeta .chatListTitleNoLabel {
+  height: 28px !important;
+  overflow: hidden !important;
+  word-wrap: break-word !important;
+}
+
+.menuListTitle > li .chatListMeta .incomplete {
+  position: absolute !important;
+  top: 4px !important;
+  right: 2px !important;
+}
+
+.menuListTitle > li .chatListMeta .incomplete .icoFontActionUnread {
+  /*display: none !important;*/
+}
+
+.menuListTitle > li .chatListMeta .incomplete .icoFontActionTask {
+  display: inline-block !important;
+  margin-top: -1px !important;
+}
+
+.menuListTitle > li .chatListPin {
+  position: absolute !important;
+  width: 20px !important;
+  left: 16px !important;
+  top: 0px !important;
+}
+
+.chatCategoryTitle {
+  font-size: 12px !important;
+  font-family: 'Lucida Grande', sans-serif !important;
+  padding: 1px !important;
+}
+
+.chatCategoryTitle ul.incomplete {
+  right: 3px;
+  top: 2px;
+}
+.placeholder {
+  float: left;
+  border: dotted 1px #000;
+  width: 78px;
+  height: 78px;
+}

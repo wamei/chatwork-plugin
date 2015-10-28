@@ -8,7 +8,7 @@ var ImageCollection = {};
 var stampList = new StampList();
 
 export function replace(htmlString) {
-    var base = Settings.get('w-stamp-url');
+    let base = Settings.get('w-stamp-url');
     return htmlString.replace(/\(stamp ([\s\S]+?)\)/g, function(all, key){
         if (base == '') {
             return all;
@@ -40,15 +40,15 @@ function reload_stamp() {
 
 function reload_image() {
     let timeline = $('#_timeLine');
-    var oldOffset = timeline[0].scrollTop;
-    var oldHeight = timeline[0].scrollHeight;
+    let oldOffset = timeline[0].scrollTop;
+    let oldHeight = timeline[0].scrollHeight;
     RM.timeline.view.build();
-    var newHeight = timeline[0].scrollHeight;
+    let newHeight = timeline[0].scrollHeight;
     timeline.scrollTop(oldOffset + newHeight - oldHeight);
 }
 
 
-var $displaySettings = $('label[for="_shortenUrl"]').parent().parent();
+let $displaySettings = $('label[for="_shortenUrl"]').parent().parent();
 Settings.addInputBox('w-stamp-url', 'スタンプ保存先URL', 'スタンプ画像を保存しているURL', $displaySettings, function(){
     reload_image();
     reload_stamp();

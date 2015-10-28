@@ -9,9 +9,9 @@ export default class Snippet {
 
     apply(keyCode) {
         window.up_key = keyCode;
-        var d = $C("#_chatText");
+        let d = $C("#_chatText");
         if (!(window.up_key !== this.keyCode || window.press_key !== this.keyCode)) {
-            var a = d.val(),
+            let a = d.val(),
                 b = d.prop("selectionStart"),
                 e = d.prop("selectionEnd");
             b === e && (e = a.substr(0, b).replace(this.regExp, this.snippet), a = a.substr(b), d.val(e + a), d.prop("selectionStart", e.length), d.prop("selectionEnd", e.length));

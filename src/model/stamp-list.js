@@ -3,7 +3,7 @@ import 'jquery-ui';
 import Stamp from './stamp.js';
 import * as Settings from '../feature/settings.js';
 
-var stampDescription = 'Shiftで削除、⌘ですぐ送信';
+const stampDescription = 'Shiftで削除、⌘ですぐ送信';
 
 export default class StampList {
     constructor() {
@@ -51,28 +51,27 @@ export default class StampList {
         this.$desc.text(stampDescription);
         this.$gallery.empty();
 
-        for (var i in this.list) {
-            let stampButton = $("<li data-stamp-key=\""+this.list[i].key+"\" style=\"float:left;width:80px;height:80px;\"><img src=\""+this.list[i].element.src+"\" style=\"max-width:80px;max-height:80px;\"></li>");
-            ((stampButton, stamp) => {
-                stampButton.click(() => {
-                    if(CW.view.key.shift){
-                        stamp.remove(true);
-                        this.hide();
-                        this.show();
-                    }else if(CW.view.key.command){
-                        this.hide();
-                        CS.view.sendMessage("(stamp "+stamp.key+")", !0);
-                    }else{
-                        $C("#_chatText").focus();
-                        CS.view.setChatText("(stamp "+stamp.key+")", !0);
-                        this.hide();
-                    }
-                }).mouseenter(() => {
-                    this.$desc.text(stamp.key);
-                }).mouseleave(() => {
-                    this.$desc.text(stampDescription);
-                });
-            })(stampButton, this.list[i]);
+        for (let key in this.list) {
+            let stamp = this.list[key];
+            let stampButton = $("<li data-stamp-key=\""+key+"\" style=\"float:left;width:80px;height:80px;\"><img src=\""+stamp.element.src+"\" style=\"max-width:80px;max-height:80px;\"></li>");
+            stampButton.click(() => {
+                if(CW.view.key.shift){
+                    stamp.remove(true);
+                    this.hide();
+                    this.show();
+                }else if(CW.view.key.command){
+                    this.hide();
+                    CS.view.sendMessage("(stamp "+key+")", !0);
+                }else{
+                    $C("#_chatText").focus();
+                    CS.view.setChatText("(stamp "+key+")", !0);
+                    this.hide();
+                }
+            }).mouseenter(() => {
+                this.$desc.text(stamp.key);
+            }).mouseleave(() => {
+                this.$desc.text(stampDescription);
+            });
             this.$gallery.append(stampButton);
         }
         this.$gallery.sortable({
@@ -80,7 +79,7 @@ export default class StampList {
             update:() => {
                 let list = [];
                 this.$gallery.children().each(function(){
-                    var key = $(this).attr('data-stamp-key');
+                    let key = $(this).attr('data-stamp-key');
                     list.push(key);
                 });
                 Settings.set('w-stamp-list', list);

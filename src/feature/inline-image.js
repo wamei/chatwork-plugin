@@ -39,14 +39,14 @@ export function delegateModalEvent() {
 
 function reload_image(){
     let timeline = $('#_timeLine');
-    var oldOffset = timeline[0].scrollTop;
-    var oldHeight = timeline[0].scrollHeight;
+    let oldOffset = timeline[0].scrollTop;
+    let oldHeight = timeline[0].scrollHeight;
     RM.timeline.view.build();
-    var newHeight = timeline[0].scrollHeight;
+    let newHeight = timeline[0].scrollHeight;
     timeline.scrollTop(oldOffset + newHeight - oldHeight);
 }
 
-var $displaySettings = $('label[for="_shortenUrl"]').parent().parent();
+let $displaySettings = $('label[for="_shortenUrl"]').parent().parent();
 Settings.addCheckBox('w-inline-image', '画像のインライン展開', $displaySettings, function(){
     reload_image();
 }, true);

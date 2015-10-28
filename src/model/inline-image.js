@@ -13,8 +13,8 @@ export default class InlineImage {
     }
 
     getSuitableImageSize(width, height) {
-        var rwidth = this.width;
-        var rheight = this.height;
+        let rwidth = this.width;
+        let rheight = this.height;
 
         if(width < rwidth){
             rheight = rheight * (width / rwidth);

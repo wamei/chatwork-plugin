@@ -2,7 +2,7 @@ import $ from 'jquery';
 import * as Notification from '../feature/notification.js';
 
 $(function () {
-    var oldPopup = CW.popup;
+    let oldPopup = CW.popup;
     CW.popup = function(b, f, d, e){
         let chat = {
             msg: d

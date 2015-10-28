@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export var settings = {};
+var settings = {};
 
 export var get = function(key, defaultValue) {
     if (!settings[key]) {
@@ -30,7 +30,7 @@ export var addCheckBox = function(key, label, $parent, save, defaultValue) {
         flag = set(key, defaultValue);
     }
 
-    var setCheckBox = function($el, flag) {
+    let setCheckBox = function($el, flag) {
         if (flag) {
             $el.removeClass('_cwCBUnChecked');
             $el.addClass('_cwCBChecked');
@@ -44,13 +44,13 @@ export var addCheckBox = function(key, label, $parent, save, defaultValue) {
         }
     };
 
-    var box = $('<span role="checkbox" aria-checked="'+flag+'" type="checkbox" id="'+key+'" value="1" class="_cwCB"></span>');
+    let box = $('<span role="checkbox" aria-checked="'+flag+'" type="checkbox" id="'+key+'" value="1" class="_cwCB"></span>');
     setCheckBox(box, flag);
     $parent.append($('<li class="_cwSelectableRow"></li>')
                    .append(box)
                    .append('<label for="'+key+'" class="ecfFCheckboxLbl">'+label+'</label>'));
 
-    var oldOpenSettingDialog = ST.view.openSettingDialog;
+    let oldOpenSettingDialog = ST.view.openSettingDialog;
     ST.view.openSettingDialog = function(){
         oldOpenSettingDialog.apply(this, arguments);
 
@@ -74,12 +74,12 @@ export var addInputBox = function(key, label, placeholder, $parent, save, defaul
         text = set(key, defaultValue);
     }
 
-    var box = $('<input type="text" id="'+key+'" placeholder="'+placeholder+'" style="width:80%;">').val(text);
+    let box = $('<input type="text" id="'+key+'" placeholder="'+placeholder+'" style="width:80%;">').val(text);
     $parent.append($('<li></li>')
                    .append(label+'<br>')
                    .append(box));
 
-    var oldOpenSettingDialog = ST.view.openSettingDialog;
+    let oldOpenSettingDialog = ST.view.openSettingDialog;
     ST.view.openSettingDialog = function(){
         oldOpenSettingDialog.apply(this, arguments);
         box.val(get(key));

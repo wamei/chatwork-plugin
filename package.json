@@ -4,7 +4,7 @@
   "description": "チャットワークをなんか色々拡張しちゃう",
   "scripts": {
     "build": "gulp build",
-    "blean": "gulp clean"
+    "clean": "gulp clean"
   },
   "author": "wamei",
   "email": "wamei.cho@gmail.com",

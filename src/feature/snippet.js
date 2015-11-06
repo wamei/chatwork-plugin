@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Snippet from '../model/snippet.js';
+import Snippet from '../class/snippet.js';
 
 const info  = new Snippet(73,  /``i([\s\S]+?)``i$/, "[info]$1[/info]");
 const title = new Snippet(84,  /``t([\s\S]+?)``t$/, "[title]$1[/title]");

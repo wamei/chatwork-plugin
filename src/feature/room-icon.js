@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import * as Settings from '../feature/settings.js';
-import RoomIcon from '../model/room-icon.js';
+import RoomIcon from '../class/room-icon.js';
 
 var RoomIconList = {};
 

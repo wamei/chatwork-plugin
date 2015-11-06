@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import Stamp from '../model/stamp.js';
-import StampList from '../model/stamp-list.js';
+import Stamp from '../class/stamp.js';
+import StampList from '../class/stamp-list.js';
 import * as Settings from '../feature/settings.js';
 
 var ImageCollection = {};

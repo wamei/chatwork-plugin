@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import ModalImage from '../model/modal-image.js';
+import ModalImage from '../class/modal-image.js';
 import * as Settings from '../feature/settings.js';
 
 var ImageCollection = {};

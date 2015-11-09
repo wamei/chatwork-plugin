@@ -12,17 +12,17 @@ export function get(type, rid, value, isOriginal) {
     let roomIcon = getRoomIcon(rid);
     let url = roomIcon.get();
     switch (type) {
-    case "html":
-        let $v = $(value).attr('onclick', 'RoomView.prototype.changeIcon('+rid+')');
+    case "src":
         if (!isOriginal && url != '') {
-            $v.attr('src', url);
+            return url;
         }
-        return $('<p>').append($v).html();
+        return value;
     }
+    let $v = $(value).attr('onclick', 'RoomView.prototype.changeIcon('+rid+')');
     if (!isOriginal && url != '') {
-        return url;
+        $v.attr('src', url);
     }
-    return value;
+    return $('<p>').append($v).html();
 }
 
 function getRoomIcon(rid) {

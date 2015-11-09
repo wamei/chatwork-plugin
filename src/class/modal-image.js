@@ -25,7 +25,7 @@ export default class ModalImage extends InlineImage{
 
         this.modal = $('<div>')
             .append($('<div style="background-color:black;opacity:0.6;position:absolute;top:0;width:100%;height:100%;z-index:101;">'))
-            .append($('<iframe style="position:absolute;top:0;width:' + ss.width + 'px;height:' + ss.height + 'px;margin:' + ss.top + 'px ' + ss.left + 'px;z-index:102;" sandbox seamless srcdoc="<style>html{overflow:hidden;}body{padding:0px;margin:0px;}</style><img style=\'display:inline-block;max-height:100%;\'  src=\'' + this.element.src + '\'>">'))
+            .append($('<iframe style="position:absolute;top:0;width:' + ss.width + 'px;height:' + ss.height + 'px;margin:' + ss.top + 'px ' + ss.left + 'px;z-index:102;" sandbox seamless srcdoc="<style>html{overflow:hidden;}body{padding:0px;margin:0px;}</style><img style=\'display:inline-block;max-width:100%;max-height:100%;\'  src=\'' + this.element.src + '\'>">'))
             .append($('<div style="background-color:white;opacity:0.0001;position:absolute;top:0;width:100%;height:100%;z-index:103;">'))
             .click(() => {
                 this.hide();

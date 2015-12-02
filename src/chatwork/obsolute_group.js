@@ -355,4 +355,39 @@ $(function(){
     };
     RL.view.myPrepareCategory();
     RL.build();
+
+    $('#_logo').before(
+        $('<div style="position:relative;top:-20px;">').append(
+            $('<div id="wameiz_historyBack" class="_showDescription" aria-label="戻る" style="cursor:pointer; margin:5px;">')
+                .append(
+                    $('<img class="normal" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gkSBSkRO91XaAAAATxJREFUaN7t2mFRxDAQxfG3pyBSKgEk4AAkoOQkVAI4QAISkNBz8OfLlSnQMmmZgcm+PAX9dZvMbhqpp6fnaIB7KyyAC3bkGitsevBXbFowUIAnVpIV+8pGrLCpwDXYNGBgAN6oSBbsRGWssE2DgZu92GbBc198JP/97HFw4hlb/TLDCStJpx3Yc+vY6goDo6QUw3s4YX/8pK+tYirsZoWBIulF0pBtmgsn7DdwduynNQwM2bEfFV5gi5InnLAzeHLBzmv4TtLFBey3hld26WIBdkF7d1qWvXR29OZ4GBEXSbeSni0qbHvikQ2999SyefRp19uJeJD0KLe0/Ofhz9EZKj3ZgOf+2+b/8BF0po2sCp1t9x5sbvEshw6be1o16MzNySo6e0dWrG7TLocOK/AS7TZ0nNXT09Pzi7wDttbdOVSILHgAAAAASUVORK5CYII=">')
+                ).append(
+                    $('<img style="display:none;" class="hover" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gkSBhYVZigHFAAAAXlJREFUaN7t2rGRwjAQBdCPhwJowjklHJnDowM7d0IlTpRDCYTKKOGcqwmXQGIYMYxvsCwZfa22Ar/ZlbW7IyBHjhyuobSpv/0NxcrY87fB25WwZwB1DFVWSMIGB8eGDVbSSpvdeF5/Y/txbgNhbwD2Md4UhSSsVzAD1htYabMH8Bc71ssZHrE3ADuGbq+QhF0EVtr8sGGdwWNfTIcFgA3rELAKmB07q6SVNh079uMMxzgEBAOnhP0XPLaKXUrYSTBLX+wFnDL2DZw69uVasvriZLHPDDMOAc5gSdhHSYvBPsBHAIMUsLwzzLy98HEPJ4+W3WmJ7KVTR09uPNqqHAAcAFxFZFjsxiM19NytJT161iK+rcoGwElMhq1M13Bc2bZVuaHJsPXRFwBN8iU9gR5EgC30gQm9+AVAW5U9E9rLkwcmtLdHLRa6FwFmQXt/emgNHb0IcOzoYI9LLfSFvrV0aEWfQwdla+mQ7Sa2TGOlTHfIkSNHjgVxB6sJnIWhakkCAAAAAElFTkSuQmCC">')
+                ).on('click', function(){
+                    window.history.back();
+                })
+                .on('mouseover', function(){
+                    $(this).children('.normal').hide();
+                    $(this).children('.hover').show();
+                })
+                .on('mouseout', function(){
+                    $(this).children('.hover').hide();
+                    $(this).children('.normal').show();
+                }),
+            $('<div id="wameiz_historyNext" class="_showDescription" aria-label="進む" style="cursor:pointer; margin:5px;">')
+                .append(
+                    $('<img class="normal" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gkSBS4blEkosQAAAUVJREFUaN7t2lFVwzAYxfH79SAACzioBJCAg04CSiahcwAOkNA6QMLq4PKysjK2LgEOh9yb/3sffidJmy0BarXab0aycwPTCs1jvRvYA82v9W5gknwmeesEJslBEs319NC8nhaaab2RbJ3AJLmXQDOv8tHMb0/y3gnMn+y/gyQLniCbiNjlPNAU/groc0e6dPCM3rpM6WW7iNg4jPBcl/JLSwn8gV7biipN6WUjgIeImNRHeK4F8HpupFXBF9HK4CW6VV/Dp02HNT26gI9oIzAATI0TFsDjjdV0jhgbJ6zDZ+kTVh08ArhbYpXBVnvpi1hF8MsaFgCUPktW/3gkYVXAyVgF8FMO9l/01ycPpYK7YufkNw7SuqIXYT0fVsYmgnWwCeBBCnsFbHVPa3C6iaeLPQPupbEnYKv70h7YA3iLWq1WS+wdlg/QgweyRFEAAAAASUVORK5CYII=">')
+                ).append(
+                    $('<img style="display:none;" class="hover" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gkSBhYfhv3uCgAAAXdJREFUaN7t2rFxg0AQheFfjAugBDsgpwQ7I7Q7kHICuxIn5NCBHZKpBJPTBB3IifDg0QiD4PDe7r0G0Derg7cMEBISsmaKut1veb1IgLncEh0JGXRZ1G1pCQyw3wIdCTvSztHSwD36o6jb2AoY4Bk4ukBLBQOkLtCSwU7Q0sE9+quo29QKGOD+POnUChggXgPtE3iIfrQCHqJv6t+7om5PHi9bhzxLKu0TXrRp+Q7u0e+WwACvU5cOLeDJm5Ym8A96rIpqAwPsx/q3RvDo0qEVfBWtGTxEp1bAF2jfq+WcdMBThJ3EwNESuANe7iz9nfMsaSJLWAt36V9Y7eAGeBhiNYOb82Q7C9XyKlYj+HMMC6DpsVTlWXKw8gJgElYLeDJWA/htDhZg99+/eMG2NvslvM8TvgnrI7hbgvXtsXTRizVPeBWsL+DVsD6AmzWx0s9w81cv1jRhJ1ipYGdYieDKJVbaGa7m9mKfJ7wJVkTmfJ8REhIS8g2CS54vm/jkDwAAAABJRU5ErkJggg==">')
+                ).on('click', function(){
+                    window.history.forward();
+                })
+                .on('mouseover', function(){
+                    $(this).children('.normal').hide();
+                    $(this).children('.hover').show();
+                })
+                .on('mouseout', function(){
+                    $(this).children('.hover').hide();
+                    $(this).children('.normal').show();
+                })));
 });

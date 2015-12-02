@@ -354,4 +354,5 @@ $(function(){
         })
     };
     RL.view.myPrepareCategory();
+    RL.build();
 });

@@ -38,19 +38,10 @@ export function delegateModalEvent() {
     });
 }
 
-function reload_image(){
-    let timeline = $('#_timeLine');
-    let oldOffset = timeline[0].scrollTop;
-    let oldHeight = timeline[0].scrollHeight;
-    RM.timeline.view.build();
-    let newHeight = timeline[0].scrollHeight;
-    timeline.scrollTop(oldOffset + newHeight - oldHeight);
-}
-
 let $displaySettings = $('label[for="_shortenUrl"]').parent().parent();
 Settings.addCheckBox('w-inline-image', '画像のインライン展開', $displaySettings, function(){
-    reload_image();
+    Settings.reloadTimeline();
 }, true);
 Settings.addInputBox('w-inline-image-domain', '画像展開ドメイン', 'マッチさせるURLを半角スペース区切り', $displaySettings, function(){
-    reload_image();
+    Settings.reloadTimeline();
 }, '');

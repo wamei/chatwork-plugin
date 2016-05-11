@@ -38,19 +38,9 @@ function reload_stamp() {
     }
 }
 
-function reload_image() {
-    let timeline = $('#_timeLine');
-    let oldOffset = timeline[0].scrollTop;
-    let oldHeight = timeline[0].scrollHeight;
-    RM.timeline.view.build();
-    let newHeight = timeline[0].scrollHeight;
-    timeline.scrollTop(oldOffset + newHeight - oldHeight);
-}
-
-
 let $displaySettings = $('label[for="_shortenUrl"]').parent().parent();
 Settings.addInputBox('w-stamp-url', 'スタンプ保存先URL', 'スタンプ画像を保存しているURL', $displaySettings, function(){
-    reload_image();
+    Settings.reloadTimeline();
     reload_stamp();
 }, '');
 reload_stamp();

@@ -28,6 +28,15 @@ export var remove = function(key) {
     delete settings[key];
 };
 
+export var reloadTimeline = function() {
+    let timeline = $('#_timeLine');
+    let oldOffset = timeline[0].scrollTop;
+    let oldHeight = timeline[0].scrollHeight;
+    RM.timeline.view.build();
+    let newHeight = timeline[0].scrollHeight;
+    timeline.scrollTop(oldOffset + newHeight - oldHeight);
+};
+
 export var addCheckBox = function(key, label, $parent, save, defaultValue) {
     let flag = get(key);
 

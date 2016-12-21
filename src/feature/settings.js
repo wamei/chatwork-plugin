@@ -29,6 +29,7 @@ export var remove = function(key) {
 };
 
 export var reloadTimeline = function() {
+    CW.last_timeline_buildkey = null;
     let timeline = $('#_timeLine');
     let oldOffset = timeline[0].scrollTop;
     let oldHeight = timeline[0].scrollHeight;

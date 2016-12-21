@@ -2,6 +2,7 @@ import $ from 'jquery';
 import * as InlineImage from '../feature/inline-image.js';
 import * as Stamp from '../feature/stamp.js';
 import * as Highlight from '../feature/highlight.js';
+import * as Filter from '../feature/filter.js';
 
 $(function () {
     let oldGMP = TimeLineView.prototype.getMessagePanel;
@@ -14,5 +15,6 @@ $(function () {
         oldRTL.apply(this, arguments);
         InlineImage.delegateModalEvent();
         Stamp.delegateStampEvent();
+        Filter.mention(RM.id);
     };
 });

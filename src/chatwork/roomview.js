@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import * as RoomIcon from '../feature/room-icon.js';
 import AutoreadButton from '../class/autoread-button.js';
+import MentionButton from '../class/mention-button.js';
 
 $(function () {
     RoomView.prototype.changeIcon = function(rid) {
@@ -19,6 +20,7 @@ $(function () {
         oldRVB.apply(this, arguments);
         var rid = parseInt(this.model.id);
         $('#_roomTitle').children('._roomTitleText.autotrim').after(
+            new MentionButton(rid).render(),
             new AutoreadButton(rid).render()
         );
     };

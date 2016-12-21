@@ -3,11 +3,12 @@ import hljs from 'highlight.js';
 import * as Settings from '../feature/settings.js';
 
 export function code($element) {
-    if (Settings.get('w-highlight-code')) {
-        $element.each(function(i, block) {
-            hljs.highlightBlock(block);
-        });
+    if (!Settings.get('w-highlight-code')) {
+        return;
     }
+    $element.each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 }
 
 export function replace(htmlString) {

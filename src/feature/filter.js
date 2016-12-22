@@ -2,14 +2,15 @@ import $ from 'jquery';
 import * as Settings from '../feature/settings.js';
 
 export function mention(rid) {
-    let list = Settings.get('w-filter-mention-list', []);
-    let index = list.indexOf(rid - 0);
-    if (index == -1) {
+    let timeline = $('#_timeLine');
+    let target = timeline.find('.chatTimeLineMessage').not('.chatTimeLineMessageMention');
+    if (!Settings.contain('w-filter-mention-list', rid - 0)) {
+        target.each(function(){
+            $(this).children().css('display', '');
+        });
         return;
     }
-    let timeline = $('#_timeLine');
-    timeline.find('.chatTimeLineMessage').not('.chatTimeLineMessageMention')
-        .each(function(){
-            $(this).remove();
-        });
+    target.each(function(){
+        $(this).children().css('display', 'none');
+    });
 }

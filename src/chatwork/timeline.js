@@ -12,17 +12,4 @@ $(function () {
         }
         oldSetMention.apply(this, arguments);
     };
-
-    let lastUpdatedTime = null;
-    let oldLoadOld = TimeLine.prototype.loadOld;
-    TimeLine.prototype.loadOld = function(b) {
-        let list = Settings.get('w-filter-mention-list', []);
-        let index = list.indexOf(RM.id - 0);
-        let now = new Date().getTime();
-        if (index != -1 && now - lastUpdatedTime < 1000) {
-            return;
-        }
-        lastUpdatedTime = now;
-        oldLoadOld.apply(this, arguments);
-    };
 });

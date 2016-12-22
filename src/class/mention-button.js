@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import * as Settings from '../feature/settings.js';
+import * as Filter from '../feature/filter.js';
 
 export default class MentionButton {
 
@@ -21,15 +22,12 @@ export default class MentionButton {
             }
             Settings.set('w-filter-mention-list', list);
             this.setColor();
-            Settings.reloadTimeline();
-            let timeline = $('#_timeLine');
-            timeline.scrollTop(timeline[0].scrollHeight);
+            Filter.mention(this.rid);
         });
     }
 
     setColor() {
-        let list = Settings.get('w-filter-mention-list', []);
-        if(list.indexOf(this.rid) != -1){
+        if(Settings.contain('w-filter-mention-list', this.rid)){
             this.$icon.css({color: '#00558c'});
         }else{
             this.$icon.css({color: '#444444'});

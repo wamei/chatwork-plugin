@@ -17,6 +17,11 @@ export var get = function(key, defaultValue) {
     return settings[key];
 };
 
+export var contain = function(key, value) {
+    let list = get(key, []);
+    return list.indexOf(value) != -1;
+};
+
 export var set = function(key, value) {
     window.localStorage.setItem(key, JSON.stringify(value));
     settings[key] = value;

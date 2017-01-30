@@ -5,8 +5,8 @@ $(function(){
     var wameiz_display_mode = true;
     $('#_categoryDisplay').html('').css('visibility', 'hidden').appendTo('#_roomListArea');
     $('#_chatCagegorySystemList').html('');
-    RL.my_filter_category = new Object();
-    RL.my_filter_category_unread = new Object();
+    RL.__proto__.my_filter_category = {};
+    RL.__proto__.my_filter_category_unread = {};
     var oldBuild = RL.build;
     RL.build = function(){
         var b = this;
@@ -20,7 +20,8 @@ $(function(){
             var a = b.getSortedRoomList();
             b.filtered_room_list = [];
             b.filtered_room_list_id = [];
-            b.my_filter_category_unread = new Object();
+            b.my_filter_category = {};
+            b.my_filter_category_unread = {};
             var sortedCategory = b.getSortedCategoryList();
             for(var i = 0; i <  sortedCategory.length; i++){
                 addRoom(sortedCategory[i]);
@@ -101,9 +102,7 @@ $(function(){
         }else{
             delete a.model.my_filter_category[id];
         }
-        $.cookie("ui_category_list", JSON.stringify(a.model.my_filter_category), {
-            expires: 3650
-        });
+        Settings.set("w-ui_category_list", JSON.stringify(a.model.my_filter_category));
     };
     RL.view.mySelectCategory = function(id, show){
         var a = this;
@@ -112,9 +111,7 @@ $(function(){
         }else{
             delete a.model.my_filter_category[id];
         }
-        $.cookie("ui_category_list", JSON.stringify(a.model.my_filter_category), {
-            expires: 3650
-        });
+        Settings.set("w-ui_category_list", JSON.stringify(a.model.my_filter_category));
     };
     var oldSC = RL.selectCategory;
     RL.selectCategory = function(a){
@@ -186,8 +183,8 @@ $(function(){
                 '</div><div id="_roomMore" class="button">' + L.chat_show_more + "</div></div>");
             $C("#_roomListItems").html(d);
             if(id){
-                var ui_category_list = $.cookie('ui_category_list');
-                if(ui_category_list !== undefined){
+                var ui_category_list = Settings.get('w-ui_category_list');
+                if(ui_category_list){
                     a.model.my_filter_category = JSON.parse(ui_category_list);
                 }
                 if(!show){

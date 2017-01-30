@@ -1,7 +1,7 @@
 import $ from 'jquery-o';
 
 $(function () {
-    let chatwork = $("script[src*='chatwork_all_']");
+    let chatwork = $("body");
     chatwork.after(
         $('<script>')
             .attr('src', chrome.extension.getURL('built/bundle.js'))

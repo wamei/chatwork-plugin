@@ -1,6 +1,8 @@
 # chatwork-plugin
 チャットワークになんか色々追加するchrome extension
 
+## <span style="color:red;">チャットワーク側の更新により現在ほぼ動きません・・・！</span>
+
 # 目次
 - [導入](#導入)
 - [機能](#機能)

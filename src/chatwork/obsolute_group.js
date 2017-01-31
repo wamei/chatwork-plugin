@@ -354,8 +354,8 @@ $(function(){
     RL.build();
 
     $('#_logo').before(
-        $('<div style="position:relative;top:-20px;">').append(
-            $('<div id="wameiz_historyBack" class="_showDescription" aria-label="戻る" style="cursor:pointer; margin:5px;">')
+        $('<div>').append(
+            $('<div id="wameiz_historyBack" class="_showDescription" aria-label="戻る" style="cursor:pointer; margin:5px;float:left;">')
                 .append(
                     $('<img class="normal" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gkSBSkRO91XaAAAATxJREFUaN7t2mFRxDAQxfG3pyBSKgEk4AAkoOQkVAI4QAISkNBz8OfLlSnQMmmZgcm+PAX9dZvMbhqpp6fnaIB7KyyAC3bkGitsevBXbFowUIAnVpIV+8pGrLCpwDXYNGBgAN6oSBbsRGWssE2DgZu92GbBc198JP/97HFw4hlb/TLDCStJpx3Yc+vY6goDo6QUw3s4YX/8pK+tYirsZoWBIulF0pBtmgsn7DdwduynNQwM2bEfFV5gi5InnLAzeHLBzmv4TtLFBey3hld26WIBdkF7d1qWvXR29OZ4GBEXSbeSni0qbHvikQ2999SyefRp19uJeJD0KLe0/Ofhz9EZKj3ZgOf+2+b/8BF0po2sCp1t9x5sbvEshw6be1o16MzNySo6e0dWrG7TLocOK/AS7TZ0nNXT09Pzi7wDttbdOVSILHgAAAAASUVORK5CYII=">')
                 ).append(
@@ -371,7 +371,7 @@ $(function(){
                     $(this).children('.hover').hide();
                     $(this).children('.normal').show();
                 }),
-            $('<div id="wameiz_historyNext" class="_showDescription" aria-label="進む" style="cursor:pointer; margin:5px;">')
+            $('<div id="wameiz_historyNext" class="_showDescription" aria-label="進む" style="cursor:pointer; margin:5px;float:left;">')
                 .append(
                     $('<img class="normal" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gkSBS4blEkosQAAAUVJREFUaN7t2lFVwzAYxfH79SAACzioBJCAg04CSiahcwAOkNA6QMLq4PKysjK2LgEOh9yb/3sffidJmy0BarXab0aycwPTCs1jvRvYA82v9W5gknwmeesEJslBEs319NC8nhaaab2RbJ3AJLmXQDOv8tHMb0/y3gnMn+y/gyQLniCbiNjlPNAU/groc0e6dPCM3rpM6WW7iNg4jPBcl/JLSwn8gV7biipN6WUjgIeImNRHeK4F8HpupFXBF9HK4CW6VV/Dp02HNT26gI9oIzAATI0TFsDjjdV0jhgbJ6zDZ+kTVh08ArhbYpXBVnvpi1hF8MsaFgCUPktW/3gkYVXAyVgF8FMO9l/01ycPpYK7YufkNw7SuqIXYT0fVsYmgnWwCeBBCnsFbHVPa3C6iaeLPQPupbEnYKv70h7YA3iLWq1WS+wdlg/QgweyRFEAAAAASUVORK5CYII=">')
                 ).append(

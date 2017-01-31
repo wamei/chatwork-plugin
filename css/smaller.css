@@ -54,3 +54,8 @@
     right:3px;
     top:2px;
 }
+
+#_logo {
+    position: absolute;
+    left: 100px;
+}

@@ -176,7 +176,7 @@ $(function(){
                         }
                         var unread = '';
                         if(a.model.my_filter_category[id[g]] && a.model.my_filter_category_unread[id[g]] > 0 && !show){
-                            unread = '<ul class="menuListTitle" style="position:absolute;right:3px;top:0px;"><li><ul class="incomplete"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul></li></ul>';
+                            unread = '<ul class="menuListTitle w_category_unread_'+id[g]+'" style="position:absolute;right:3px;top:0px;"><li><ul class="incomplete"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul></li></ul>';
                         }
                         d += '<div id="_categoryDisplay_' + id[g] + '" class="chatCategoryTitle" style="cursor: pointer; background-color: rgb(211, 211, 211);"><span id="_categoryDisplayTitle_' + id[g] + '" class="categoryDisplayTitle">' + name + '</span>'+unread+'</div><ul role="list" class="menuListTitle cwTextUnselectable" id="_categoryDisplayList_'+id[g]+'" style="display:block;">';
                     }
@@ -193,6 +193,7 @@ $(function(){
                 for(var i = 0; i < categoryList.length; i++){
                     (function(key){
                         $("#_categoryDisplay_"+key).click(function (event) {
+                            $('.w_category_unread_' + key).hide();
                             $("#_categoryDisplayList_"+key).animate({height: 'toggle'}, 300, function(){
                                 a.mySelectCategoryToggle(key);
                                 a.model.build();

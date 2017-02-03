@@ -97,7 +97,7 @@ $(function(){
     };
     RL.view.mySelectCategoryToggle = function(id){
         var a = this;
-        if(a.model.my_filter_category[id] == null){
+        if(!a.model.my_filter_category[id]){
             a.model.my_filter_category[id] = id;
         }else{
             delete a.model.my_filter_category[id];
@@ -155,6 +155,10 @@ $(function(){
             e = b.length,
             f = e;
         if (e) {
+            var ui_category_list = Settings.get('w-ui_category_list');
+            if(ui_category_list){
+                a.model.my_filter_category = JSON.parse(ui_category_list);
+            }
             $C("#_chatListEmptyArea").hide();
             if (e > a.room_show_limit) f = a.room_show_limit;
             for (var g = 0; g < f; g++){
@@ -172,7 +176,7 @@ $(function(){
                         }
                         var unread = '';
                         if(a.model.my_filter_category[id[g]] && a.model.my_filter_category_unread[id[g]] > 0 && !show){
-                            unread = '<ul class="incomplete" style="position:absolute;right:3px;top:0px;"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul>';
+                            unread = '<ul class="menuListTitle" style="position:absolute;right:3px;top:0px;"><li><ul class="incomplete"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul></li></ul>';
                         }
                         d += '<div id="_categoryDisplay_' + id[g] + '" class="chatCategoryTitle" style="cursor: pointer; background-color: rgb(211, 211, 211);"><span id="_categoryDisplayTitle_' + id[g] + '" class="categoryDisplayTitle">' + name + '</span>'+unread+'</div><ul role="list" class="menuListTitle cwTextUnselectable" id="_categoryDisplayList_'+id[g]+'" style="display:block;">';
                     }
@@ -183,10 +187,6 @@ $(function(){
                 '</div><div id="_roomMore" class="button">' + L.chat_show_more + "</div></div>");
             $C("#_roomListItems").html(d);
             if(id){
-                var ui_category_list = Settings.get('w-ui_category_list');
-                if(ui_category_list){
-                    a.model.my_filter_category = JSON.parse(ui_category_list);
-                }
                 if(!show){
                 var categoryList = a.model.getSortedCategoryList();
                 categoryList.push('all');

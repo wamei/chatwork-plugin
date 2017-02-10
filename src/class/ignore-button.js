@@ -19,6 +19,24 @@ export default class IgnoreButton {
         }else{
             this.$el.attr('src', IgnoreButton.notifier_on);
         }
+
+        this.$el.on('click', function() {
+            let list = Settings.get('w-ignored-room-list', []);
+            let index = list.indexOf(this.rid);
+
+            if(index != -1){
+                list.splice(index, 1);
+                $(".w_notifier.w_"+this.rid).attr('src', IgnoreButton.notifier_on);
+            }else{
+                list.push(rid);
+                $(".w_notifier.w_"+this.rid).attr('src', IgnoreButton.notifier_off);
+            }
+            Settings.set('w-ignored-room-list', list);
+
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }.bind(this));
     }
 
     render() {

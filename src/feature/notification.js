@@ -53,7 +53,7 @@ export function isAutoreadRoom(roomId) {
 
 export function render(htmlString, rid) {
     let $el = $(htmlString);
-    $el.find('.chatListTitleArea').prepend(new IgnoreButton(rid).render());
+    $el.find('.roomListItem__roomName').prepend(new IgnoreButton(rid).render());
     if(isAutoreadRoom(rid)){
         $el.css('color', '#aaaaaa');
     }else{

@@ -11,7 +11,7 @@ export default class ModalImage extends InlineImage{
         let ss = this.getSuitableImageSize(timeline.width(), timeline.height());
         let inlineHeight = ss.height == 0 ? 200 : (ss.height > 200 ? 200 : ss.height);
 
-        return $('<img style="display:block;max-height:' + inlineHeight + 'px;" src="' + this.element.src + '" class="popup_image">');
+        return $('<div style="height:' + inlineHeight + 'px;"><img style="display:block;max-height:' + inlineHeight + 'px;" src="' + this.element.src + '" class="popup_image"></div>');
     }
 
     show() {

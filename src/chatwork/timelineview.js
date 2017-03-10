@@ -7,13 +7,14 @@ import * as Filter from '../feature/filter.js';
 $(function () {
     let oldGMP = TimeLineView.prototype.getMessagePanel;
     TimeLineView.prototype.getMessagePanel = function (a, b) {
-        return Highlight.replace(Stamp.replace(InlineImage.replace(oldGMP.apply(this, arguments))));
+        return Stamp.replace(oldGMP.apply(this, arguments));
     };
 
     let oldRTL = TimeLineView.prototype.renderTimeLine;
     TimeLineView.prototype.renderTimeLine = function (a, f) {
         oldRTL.apply(this, arguments);
-        InlineImage.delegateModalEvent();
+        InlineImage.apply($('.chatTimeLineMessageArea'));
+        Highlight.apply($("#_timeLine").find('code'));
         Stamp.delegateStampEvent();
         Filter.mention(RM.id);
     };

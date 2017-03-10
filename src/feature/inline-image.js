@@ -4,18 +4,20 @@ import * as Settings from '../feature/settings.js';
 
 var ImageCollection = {};
 
-export function replace(htmlString) {
-    let $el = $(htmlString);
+export function apply($el) {
+    if (!Settings.get('w-inline-image')) {
+        return;
+    }
     let timeline = $('#_timeLine');
-    if (Settings.get('w-inline-image')) {
-        let conditions = Settings.get('w-inline-image-domain').split(' ');
-        let condition = '';
-        for (var i = 0; i < conditions.length; i++) {
-            if (conditions[i] != '') {
-                condition += ', a[href^="' + conditions[i] + '"]';
-            }
+    let conditions = Settings.get('w-inline-image-domain').split(' ');
+    let condition = '';
+    for (var i = 0; i < conditions.length; i++) {
+        if (conditions[i] != '') {
+            condition += ', a[href^="' + conditions[i] + '"]';
         }
-        $el.find('a[href$=".gif"], a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]' + condition).not(':has(div)')
+    }
+    $el.each(function() {
+        $(this).find('a[href$=".gif"], a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]' + condition).not(':has(div)')
             .each(function(){
                 let src = $(this).attr('href');
                 let img = ImageCollection[src];
@@ -24,17 +26,14 @@ export function replace(htmlString) {
                     ImageCollection[src] = new ModalImage(src);
                     img = ImageCollection[src];
                 }
+                $(this).css('overflow', 'visible');
 
                 img.render().appendTo(this);
             });
-    }
-    return $el.wrap('<p>').parent().html();
-}
-
-export function delegateModalEvent() {
+    });
     $(".popup_image").on('click', function(event){
         event.preventDefault();
-        ImageCollection[$(this).attr('data-image')].show();
+        ImageCollection[$(this).attr('src')].show();
     });
 }
 

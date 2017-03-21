@@ -9,14 +9,14 @@ var stampList = new StampList();
 
 export function replace(htmlString) {
     let base = Settings.get('w-stamp-url');
+    if (base == '') {
+        return htmlString;
+    }
     return htmlString.replace(/\(stamp ([\s\S]+?)\)/g, function(all, key){
-        if (base == '') {
-            return all;
-        }
         let img = ImageCollection[key];
 
         if (!img) {
-            ImageCollection[key] = new Stamp(Settings.get('w-stamp-url'), key);
+            ImageCollection[key] = new Stamp(base, key);
             img = ImageCollection[key];
         }
 

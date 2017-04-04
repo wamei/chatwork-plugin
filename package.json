@@ -34,7 +34,7 @@
   "browser": {
     "jquery": "./lib/jquery.js",
     "jquery-o": "./node_modules/jquery/dist/jquery.min.js",
-    "jquery-ui": "./node_modules/jquery-ui/jquery-ui.js"
+    "jquery-ui": "./node_modules/jquery-ui/dist/jquery-ui.js"
   },
   "browserify-shim": {
     "jquery": "global:$"

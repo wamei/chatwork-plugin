@@ -7,7 +7,7 @@ export default class AutoreadButton {
         this.rid = rid;
         this.$icon = $('<span class="icoFontActionUnread icoSizeLarge"></span>');
         this.$li = $('<li role="button" class="_showDescription" aria-label="自動既読機能のON/OFFが行えます" style="cursor:pointer;"></li>');
-        this.$el = $('<ul style="display:inline-block;margin-right:10px;"></ul>');
+        this.$el = $('<ul style="display:inline-block;margin-left:10px;margin-right:10px;"></ul>');
         this.$el.append(this.$li.append(this.$icon));
         this.setColor();
         this.$el.on('click', () => {

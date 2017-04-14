@@ -20,12 +20,12 @@ $(function () {
     RoomView.prototype.build = function(){
         oldRVB.apply(this, arguments);
         var rid = parseInt(this.model.id);
-        $('#_roomTitle').children('._roomTitleText.autotrim')
+        $('#_roomTitle').children('._roomTitleText')
             .before(
-                new IgnoreButton(rid).render()
-            ).after(
+                new IgnoreButton(rid).render(),
                 new MentionButton(rid).render(),
                 new AutoreadButton(rid).render()
+            ).after(
             );
     };
 });

@@ -18,25 +18,25 @@ export default class RoomIcon {
         this.$input = $('<input type="file" style="width:100%">');
         this.$setting = $('<div class="_cwDGBase dialogBase" style="z-index: 1003;">')
             .append(
-                $('<div class="_cwDGWrapper dialogContent" style="width: 650px; height: 250px; margin-top: 61px;">')
-                    .append($('<h1 class="contentHl dialogContentH1 autotrim" style="display: block;">ルームアイコンの変更</h1>'))
-                    .append($('<div class="_cwDGTitleButton windowButton linkIconStatus" style="display: block;"><span role="button" aria-label="閉じる" class="_cwDGButton icoFontCancel icoSizeLarge"></span></div>')
-                            .on('click', () => {
-                                this.closeSetting();
-                            }))
-                    .append($('<div style="" class="_cwDGFooter dialogContentFooter">')
-                            .append($('<div role="button" aria-label="保存する" class="_cwDGButton button btnPrimary" data-idx="0">保存する</div>')
+                $('<div class="_cwDGWrapper dialogContainer" style="width: 650px; height: 337px; margin-top: 61px;">')
+                    .append($('<div class="_cwDGHeader dialogContainer__header"></div>')
+                            .append($('<h1 class="_cwDGTitle dialogContainer__title">ルームアイコンの変更</h1>'))
+                            .append($('<div class="_cwDGTitleButton dialogContainer__closeButton"><span role="button" aria-label="閉じる" class="_cwDGButton dialogContainer__closeButtonIcon icoFontCancel icoSizeLarge"></span></div>')
+                                    .on('click', () => {
+                                        this.closeSetting();
+                                    })))
+                    .append($('<div style="" class="_cwDGFooter dialogContainer__footer"></div>')
+                            .append($('<div role="button" aria-label="保存" class="_cwDGButton button btnPrimary" data-idx="0">保存</div>')
                                     .on('click', () => {
                                         this.setIcon();
                                         this.closeSetting();
                                     }))
-                            .append($('<div role="button" aria-label="キャンセル" class="_cwDGButton _cwDGButtonCancel button buttonGray" data-idx="1">キャンセル</div></div>')
+                            .append($('<div role="button" aria-label="キャンセル" class="_cwDGButton _cwDGButtonCancel button buttonGray" data-idx="1">キャンセル</div>')
                                     .on('click', () => {
                                         this.closeSetting();
-                                    }))
-                           )
+                                    })))
                     .append(
-                        $('<div class="dialog floatWindowContent _cwDG" role="dialog" style="display: block; height: 337px; overflow: auto;">')
+                        $('<div class="dialog dialogRoomSetting _cwDG" role="dialog" style="display: block; height: 337px; overflow: auto;">')
                             .append($('<div class="_cwFWContent" style="float:left;">')
                                     .append($('<div class="controlGroup">')
                                             .append('<label class="controlLabel" style="width:150px;">デフォルトアイコン</label>')

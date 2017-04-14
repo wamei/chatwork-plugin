@@ -1,5 +1,7 @@
 import $ from 'jquery';
-import 'jquery-ui';
+import 'jquery-ui/ui/widget';
+import 'jquery-ui/ui/widgets/mouse';
+import 'jquery-ui/ui/widgets/sortable';
 import Stamp from './stamp.js';
 import * as Settings from '../feature/settings.js';
 
@@ -15,7 +17,7 @@ export default class StampList {
         this.$el.appendTo($('body'));
         this.$Cel = this.$el.cwToolTip({open: function() {}});
 
-        this.$button = $('<li role="button" class="_showDescription" aria-label="すたんぷ"><span class="icoFontContentOpen icoSizeLarge"></span></li>')
+        this.$button = $('<li role="button" class="_showDescription chatInput__emoticon" aria-label="すたんぷ"><span class="icoFontContentOpen icoSizeLarge"></span></li>')
             .on('click', () => {
                 this.show();
             });
@@ -85,7 +87,6 @@ export default class StampList {
                 Settings.set('w-stamp-list', list);
             }
         });
-        this.$gallery.disableSelection();
 
         this.$Cel.open(this.$button);
     }

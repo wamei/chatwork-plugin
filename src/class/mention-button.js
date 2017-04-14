@@ -8,7 +8,7 @@ export default class MentionButton {
         this.rid = rid;
         this.$icon = $('<span class="icoFontTo icoSizeLarge"></span>');
         this.$li = $('<li role="button" class="_showDescription" aria-label="Toのみを表示します" style="cursor:pointer;"></li>');
-        this.$el = $('<ul style="display:inline-block;margin-right:10px;"></ul>');
+        this.$el = $('<ul style="display:inline-block;margin-left:10px;"></ul>');
         this.$el.append(this.$li.append(this.$icon));
         this.setColor();
         this.$el.on('click', () => {

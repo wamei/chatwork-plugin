@@ -1,6 +1,6 @@
 {
   "name": "wameiz-chatwork-plugin",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "チャットワークをなんか色々拡張しちゃう",
   "scripts": {
     "build": "gulp build",

@@ -332,24 +332,6 @@ $(function(){
                 this.isChecked())
             }
         });
-        $("#_chatCategoryList").on("click", "._categoryEdit", function() {
-            var b = $(this).closest("li._chatCategoryItem").attr("data-cat-id"), d = a.model.category_dat[b].name;
-            l.open(b);
-            $("#_categoryName").val(d);
-            r(a.model.category_dat[b].list, !0)
-        }).on("click", "._categoryDelete", function() {
-            var b = $(this).parents("li._chatCategoryItem"), d = b.data("cat-id"), b = b.find("._categoryName").text();
-            CW.view.confirmDelete(L.chat_category_confirm_delete.replace(/%%category_name%%/, b), function() {
-                CW.post("gateway.php",
-                {
-                    cmd: "delete_category",
-                    cat_id: d
-                }, function() {
-                    a.model.category_dat[d] != void 0 && delete a.model.category_dat[d];
-                    a.model.buildCategory()
-                })
-            })
-        })
     };
     RL.view.myPrepareCategory();
     RL.build();

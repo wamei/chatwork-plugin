@@ -298,7 +298,7 @@ $(function(){
                         };
                         this.data.cat_id ? (h.cmd = "edit_category", h.cat_id = this.data.cat_id) : h.cmd = "add_category";
                         var j = this;
-                        CW.postSync("gateway.php", h, function(b) {
+                        CW.post("gateway.php", h, function(b) {
                             for (var d in b.cat_dat)
                                 a.model.category_dat[d] = b.cat_dat[d];
                             a.model.buildCategory();
@@ -340,7 +340,7 @@ $(function(){
         }).on("click", "._categoryDelete", function() {
             var b = $(this).parents("li._chatCategoryItem"), d = b.data("cat-id"), b = b.find("._categoryName").text();
             CW.view.confirmDelete(L.chat_category_confirm_delete.replace(/%%category_name%%/, b), function() {
-                CW.postSync("gateway.php",
+                CW.post("gateway.php",
                 {
                     cmd: "delete_category",
                     cat_id: d

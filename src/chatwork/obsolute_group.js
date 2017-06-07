@@ -114,13 +114,13 @@ $(function(){
         Settings.set("w-ui_category_list", JSON.stringify(a.model.my_filter_category));
     };
     var oldSC = RL.selectCategory;
-    RL.selectCategory = function(a){
+    RL.selectCategory = function(){
         if(!wameiz_display_mode){
-            oldSC(a);
+            oldSC.apply(this, arguments);
             return;
         }
         var b = this;
-        oldSC(a);
+        oldSC.apply(this, arguments);
         var position = $('#_categoryDisplay_' + b.filter_category).position().top - $('#_roomListArea').position().top + $('#_roomListArea').scrollTop();
         $('#_roomListArea').animate({scrollTop: position}, {queue : false});
     };
@@ -216,8 +216,6 @@ $(function(){
         for (k in b.rooms){
             checked[k] ? e.push(k) : d.push(k);
         }
-        d = b.sortByName(d);
-        e = b.sortByName(e);
         var a = 0;
         for (k = d.length; a < k; a++)
             e.push(d[a]);

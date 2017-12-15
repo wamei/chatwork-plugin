@@ -1,7 +1,7 @@
 .menuListTitle > li {
     font-size: 12px !important;
     font-family: 'Lucida Grande', sans-serif !important;
-    padding: 1px !important;
+    padding: 5px !important;
     overflow: hidden !important;
     word-break: break-all !important;
 }
@@ -55,7 +55,6 @@
     top:2px;
 }
 
-#_logo {
-    position: absolute;
-    left: 100px;
+#_search {
+    width: 300px;
 }

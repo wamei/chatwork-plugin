@@ -2,98 +2,90 @@ import $ from 'jquery';
 import * as Settings from '../feature/settings.js';
 
 $(function(){
-    var wameiz_display_mode = true;
+    var preserved_category = [
+        'all',
+        'contact',
+        'group',
+        'mute'
+    ];
     $('#_categoryDisplay').html('').css('visibility', 'hidden').appendTo('#_roomListArea');
     $('#_chatCagegorySystemList').html('');
+    RL.__proto__.filtered_room_list_id = [];
     RL.__proto__.my_filter_category = {};
     RL.__proto__.my_filter_category_unread = {};
     var oldBuild = RL.build;
-    RL.build = function(){
-        var b = this;
-        if(!wameiz_display_mode){
-            b.filter_category = 'all';
-            oldBuild();
-            return;
+    RL.build = function(e) {
+        var t = this;
+        if (e = e || !1, t.has_update) return t.load();
+        var n = t.getSortedRoomList();
+        t.filtered_room_list = [];
+        // wamei------------------
+        t.filtered_room_list_id = [];
+        t.my_filter_category = {};
+        t.my_filter_category_unread = {};
+        var sortedCategory = t.getSortedCategoryList();
+        for(var i = 0; i <  sortedCategory.length; i++){
+            addRoom(sortedCategory[i], true);
         }
-        if (b.has_update) return b.load();
-        else {
-            var a = b.getSortedRoomList();
-            b.filtered_room_list = [];
-            b.filtered_room_list_id = [];
-            b.my_filter_category = {};
-            b.my_filter_category_unread = {};
-            var sortedCategory = b.getSortedCategoryList();
-            for(var i = 0; i <  sortedCategory.length; i++){
-                addRoom(sortedCategory[i]);
-            }
-            addRoom('all', true);
-            b.view.build(b.filtered_room_list, b.filtered_room_list_id, b.filter_toonly || b.filter_readonly || b.filter_taskonly);
-            b.view.updateSumNumbers();
-            if (b.lazy_select)
-                if (b.rooms[b.lazy_select] != void 0) b.selectRoom(b.lazy_select, b.lazy_select_chat), b.lazy_select = 0, b.lazy_select_chat = 0;
-            else {
-                if (RM) b.lazy_select = 0, b.lazy_select_chat = 0, CW.alert(L.chatroom_error_no_member, function () {
-                    b.selectRoom(RM.id);
-                })
-            } else b.rebuild_room &&
-                RM && RM.build();
-            b.rebuild_room = !1;
-        }
-        function IsExists(array, value) {
-            for (var i =0, len = array.length; i < len; i++) {
-                if (value == array[i]) {
-                    return true;
-                }
-            }
-            return false;
-        }
+        addRoom('all', false);
         function addRoom(fc, dup){
-            var d = null,
-                e = !1,
-                k = {};
-            b.unread_room_sum = 0;
-            b.mention_room_sum = 0;
-            b.mytask_room_sum = 0;
-            b.unread_total = 0;
-            b.mytask_total = 0;
-            b.my_filter_category_unread[fc] = 0;
-            if (fc && !b.category_defaults[fc])
-                for (var e = !0, d = 0, i = b.category_dat[fc].list.length; d < i; d++) k[b.category_dat[fc].list[d]] = !0;
-            i = [];
-            b.filter_word && (i = CW.splitWithSpace(b.filter_word));
-            for (var h = 0; h < a.length; h++)
-                if (a[h] != void 0) {
-                    var d = b.rooms[a[h]],
-                        j = d.getUnreadNum(),
-                        n = 0;
-                    j > 0 && (b.unread_total += j, b.unread_room_sum++, n = d.getMentionNum(), n > 0 && b.mention_room_sum++);
-                    d.mytask_num > 0 && (b.mytask_total += d.mytask_num, b.mytask_room_sum++);
-                    if (i.length > 0) {
-                        j = d.getName();
-                        if (!j) continue;
-                        if (d.type == "contact") {
-                            if (!AC.isMatchedWithKeyList(i, d.getAccountId())) continue
-                        } else if (!CW.isMatchedWithKeyList(i, j)) continue
-                    } else {// if (!RM || !(d.id == RM.id && b.filter_remain_flag[d.id] != void 0)) {
-                        if (e) {
-                            if (k[d.id] != !0) continue
+            var a = null,
+            r = !1,
+            s = {};
+            t.unread_room_sum = 0, t.mention_room_sum = 0, t.mytask_room_sum = 0, t.unread_total = 0, t.mytask_total = 0;
+            t.mytask_total = 0; // wamei add
+            t.my_filter_category_unread[fc] = 0; // wamei add
+            if (fc && !t.category_defaults[fc]) { // wamei replace
+                r = !0;
+                for (var l = 0, c = t.category_dat[fc].list.length; l < c; l++) s[t.category_dat[fc].list[l]] = !0; // wamei replace
+            }
+            var u = [];
+            t.filter_word && (u = CW.splitWithSpace(t.filter_word));
+            for (var d = 0; d < n.length; d++)
+                if (void 0 != n[d]) {
+                    var p = (a = t.rooms[n[d]]).getUnreadNum(),
+                    _ = 0;
+                    if (p > 0 && (t.unread_total += p, t.unread_room_sum++, (_ = a.getMentionNum()) > 0 && t.mention_room_sum++),
+                        a.mytask_num > 0 && (t.mytask_total += a.mytask_num, t.mytask_room_sum++), u.length > 0) {
+                        var h = a.getName();
+                        if (!h) continue;
+                        if ("contact" == a.type) {
+                            if (!AC.isMatchedWithKeyList(u, a.getAccountId())) continue
+                        } else if (!CW.isMatchedWithKeyList(u, h)) continue
+                    } else { // if (!RM || a.id != RM.id || void 0 == t.filter_remain_flag[a.id]) {
+                        if (r) {
+                            if (1 != s[a.id]) continue
                         } else {
-                            if (fc == "contact" && d.type != "contact") continue;
-                            if (fc == "group" && d.type != "group") continue;
-                            if (fc == "mytask" && d.mytask_num == 0) continue
-                        } if (b.filter_readonly && j == 0) continue;
-                        if (b.filter_toonly && n ==
-                            0) continue;
-                        if (b.filter_taskonly && d.mytask_num == 0) continue;
-                        if (b.filter_internalonly && !d.isInternal()) continue
+                            if ("contact" == t.filter_category && "contact" != a.type) continue;
+                            if ("group" == t.filter_category && "group" != a.type) continue;
+                            if ("mytask" == t.filter_category && 0 == a.mytask_num) continue;
+                            if ("mute" == t.filter_category && 0 == a.mute) continue
+                        }
+                        if (t.filter_readonly && 0 == p) continue;
+                        if (t.filter_toonly && 0 == _) continue;
+                        if (t.filter_taskonly && 0 == a.mytask_num) continue;
+                        if (t.filter_internalonly && !a.isInternal()) continue
                     }
-                    if(dup && IsExists(b.filtered_room_list, a[h])) continue;
-                    b.my_filter_category_unread[fc] += j;
-                    b.filter_remain_flag[d.id] = !0;
-                    b.filtered_room_list.push(a[h]);
-                    b.filtered_room_list_id.push(fc);
+                    if(!dup && t.filtered_room_list.includes(n[d])) continue; // wamei add
+                    if ("mute" == t.filter_category && 0 == a.mute) continue; // wamei add
+                    if ("contact" == t.filter_category && "contact" != a.type) continue; // wamei add
+                    if ("group" == t.filter_category && "group" != a.type) continue; // wamei add
+                    if ("mytask" == t.filter_category && 0 == a.mytask_num) continue; // wamei add
+                    t.my_filter_category_unread[fc] += p; // wamei add
+                    t.filtered_room_list_id.push(fc); // wamei add
+                    t.filter_remain_flag[a.id] = !0,
+                    t.filtered_room_list.push(n[d])
                 }
         }
+        //------------------------
+        t.view.build(t.filtered_room_list, t.filtered_room_list_id, t.filter_toonly || t.filter_readonly || t.filter_taskonly || t.filter_internalonly), t.view.updateSumNumbers(), // wamei replace
+        t.view.setFilterTitle(),
+        t.lazy_select ? void 0 != t.rooms[t.lazy_select] ? (t.selectRoom(t.lazy_select, t.lazy_select_chat),
+                                                            t.view.scrollToRoom(t.lazy_select, 100),
+                                                            t.lazy_select = 0, t.lazy_select_chat = "") : RM && (t.lazy_select = 0, t.lazy_select_chat = "",
+                                                                                                                   CW.alert("メンバーが居ません", function() {
+                                                                                                                       t.selectRoom(RM.id)
+                                                                                                                   })) : !e && t.rebuild_room && RM && RM.build(), e || (t.rebuild_room = !1)
     };
     RL.view.mySelectCategoryToggle = function(id){
         var a = this;
@@ -115,13 +107,13 @@ $(function(){
     };
     var oldSC = RL.selectCategory;
     RL.selectCategory = function(){
-        if(!wameiz_display_mode){
-            oldSC.apply(this, arguments);
-            return;
-        }
         var b = this;
         oldSC.apply(this, arguments);
-        var position = $('#_categoryDisplay_' + b.filter_category).position().top - $('#_roomListArea').position().top + $('#_roomListArea').scrollTop();
+        RL.view.setFilterTitle();
+        var position = 0;
+        if (!preserved_category.includes(b.filter_category)) {
+            position = $('#_categoryDisplay_' + b.filter_category).position().top - $('#_roomListArea').position().top + $('#_roomListArea').scrollTop();
+        }
         $('#_roomListArea').animate({scrollTop: position}, {queue : false});
     };
     RoomView.prototype.readFileBase64 = function(e) {
@@ -144,10 +136,6 @@ $(function(){
     }
     var oldViewBuild = RL.view.build;
     RL.view.build = function(b, id, show){
-        if(!wameiz_display_mode){
-            oldViewBuild.apply(this, arguments);
-            return;
-        }
         var a = this;
         a.model.prepareRM();
         var prevId = 0;
@@ -178,7 +166,7 @@ $(function(){
                         if(a.model.my_filter_category[id[g]] && a.model.my_filter_category_unread[id[g]] > 0 && !show){
                             unread = '<ul class="menuListTitle w_category_unread_'+id[g]+'" style="position:absolute;right:3px;top:0px;"><li><ul class="incomplete"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul></li></ul>';
                         }
-                        d += '<div id="_categoryDisplay_' + id[g] + '" class="chatCategoryTitle" style="cursor: pointer; background-color: rgb(211, 211, 211);"><span id="_categoryDisplayTitle_' + id[g] + '" class="categoryDisplayTitle">' + name + '</span>'+unread+'</div><ul role="list" class="menuListTitle cwTextUnselectable" id="_categoryDisplayList_'+id[g]+'" style="display:block;">';
+                        d += '<div id="_categoryDisplay_' + id[g] + '" class="chatCategoryTitle" style="cursor: pointer; background-color: rgb(211, 211, 211);"><span style="margin: 8px;" id="_categoryDisplayTitle_' + id[g] + '" class="categoryDisplayTitle">' + name + '</span>'+unread+'</div><ul role="list" class="menuListTitle cwTextUnselectable" id="_categoryDisplayList_'+id[g]+'" style="display:block;">';
                     }
                     d += a.getRoomItemPanel(b[g]);
                 }

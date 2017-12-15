@@ -172,7 +172,7 @@ $(function(){
                         if(id[g] == 'all'){
                             name = 'その他のチャット一覧';
                         }else{
-                            name = $C("#_chatCategoryList").find("[data-cat-id=" + id[g] + "]").find("span._categoryName").text();
+                            name = $C("#_chatCategoryUserList").find("[data-cat-id=" + id[g] + "]").find("span._categoryName").text();
                         }
                         var unread = '';
                         if(a.model.my_filter_category[id[g]] && a.model.my_filter_category_unread[id[g]] > 0 && !show){

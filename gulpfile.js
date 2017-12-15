@@ -46,7 +46,7 @@ gulp.task('manifest', function () {
 });
 
 gulp.task('build', function() {
-    runSequence(
+    return runSequence(
         'clean',
         ['bundlejs', 'loadjs', 'css', 'manifest']
     );

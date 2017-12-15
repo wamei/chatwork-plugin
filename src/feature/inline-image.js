@@ -8,7 +8,6 @@ export function apply($el) {
     if (!Settings.get('w-inline-image')) {
         return;
     }
-    let timeline = $('#_timeLine');
     let conditions = Settings.get('w-inline-image-domain').split(' ');
     let condition = '';
     for (var i = 0; i < conditions.length; i++) {
@@ -16,21 +15,19 @@ export function apply($el) {
             condition += ', a[href^="' + conditions[i] + '"]';
         }
     }
-    $el.each(function() {
-        $(this).find('a[href$=".gif"], a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]' + condition).not(':has(div)')
-            .each(function(){
-                let src = $(this).attr('href');
-                let img = ImageCollection[src];
+    $el.find('a[href$=".gif"], a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]' + condition).not(':has(div)')
+        .each(function(){
+            let src = $(this).attr('href');
+            let img = ImageCollection[src];
 
-                if (!img) {
-                    ImageCollection[src] = new ModalImage(src);
-                    img = ImageCollection[src];
-                }
-                $(this).css('overflow', 'visible');
+            if (!img) {
+                ImageCollection[src] = new ModalImage(src);
+                img = ImageCollection[src];
+            }
+            $(this).css('overflow', 'visible');
 
-                img.render().appendTo(this);
-            });
-    });
+            img.render().appendTo(this);
+        });
     $(".popup_image").on('click', function(event){
         event.preventDefault();
         ImageCollection[$(this).attr('src')].show();

@@ -8,8 +8,45 @@ $(function(){
         'group',
         'mute'
     ];
+    var oldSetFilterTitle = RL.view.setFilterTitle;
+    RL.view.__proto__.setFilterTitle = function() {
+        oldSetFilterTitle.apply(this, arguments);
+        $C("#_chatToStatusText").text("(" + this.model.mention_room_sum + ")");
+        var e = "roomFilterListTooltip__listRoomItem--selected";
+        var h = 'roomListHeader__unreadRoomNum--hasMention';
+        if (RL.filter_toonly) {
+            $("#_chatStatusAll").removeClass(e);
+            $('#_chatStatusTypeTo').addClass(e);
+            $C("#_roomFilterListUnreadNum").text("(" + RL.mention_room_sum + ")");
+            $("#_roomFilterListUnreadNum").show();
+            $("#_roomFilterListTaskNum").hide();
+            if (RL.mention_room_sum > 0) {
+                $C("#_roomFilterListUnreadNum").addClass(h);
+            } else {
+                $C("#_roomFilterListUnreadNum").removeClass(h);
+            }
+            $("#_roomFilterListName").text($("." + e + " ._chatStatusTypeListItemName").text());
+        }
+        if (RL.mention_room_sum > 0) {
+            $C("#_chatToStatusText").addClass(h);
+        } else {
+            $C("#_chatToStatusText").removeClass(h);
+        }
+    };
     $('#_categoryDisplay').html('').css('visibility', 'hidden').appendTo('#_roomListArea');
     $('#_chatCagegorySystemList').html('');
+    $('#_chatStatusTypeList').append(
+        $(`<li id="_chatStatusTypeTo" class="_chatStatusTypeListItem roomFilterListTooltip__listRoomItem roomFilterListTooltip__listRoomItem--selected">
+        <span class="_chatStatusTypeListItemName roomFilterListTooltip__listRoomItemName">自分宛ての未読があるチャット</span>
+        <span id="_chatToStatus" class="roomFilterListTooltip__badge" style="display: block;">
+          <span id="_chatToStatusText" class="roomFilterListTooltip__badgeText">()</span>
+        </span>
+      </li>`).on('click', function() {
+          RL.setReadOnly(!1), RL.setToOnly(!0), RL.setTaskOnly(!1);
+          RL.selectCategory("all"),
+          RL.view.setFilterTitle(), RL.build()
+      })
+    );
     RL.__proto__.filtered_room_list_id = [];
     RL.__proto__.my_filter_category = {};
     RL.__proto__.my_filter_category_unread = {};

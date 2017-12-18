@@ -7,3 +7,7 @@
 #_search {
     width: 300px;
 }
+
+#_selectRoomList {
+    max-width: calc(100% - 24px * 4 - 8px * 2 - 4px - 8px);
+}

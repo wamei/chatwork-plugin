@@ -107,3 +107,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 #_search {
   width: 300px;
 }
+
+#_selectRoomList {
+  max-width: calc(100% - 24px * 4 - 8px * 2 - 4px - 8px);
+}

@@ -44,8 +44,32 @@ $(function(){
       </li>`).on('click', function() {
           RL.setReadOnly(!1), RL.setToOnly(!0), RL.setTaskOnly(!1);
           RL.selectCategory("all"),
-          RL.view.setFilterTitle(), RL.build()
+          RL.view.setFilterTitle(), RL.build();
       })
+    );
+    var $filter_unread_button = $('<div class="roomListHeader__myChatButton" aria-label="未読のあるチャットを表示"><svg viewBox="0 0 10 10" class="roomListHeader__myChatIcon" width="16" height="16"><use fill-rule="evenodd" xlink:href="#icon_unread"></use></svg></div>')
+        .on('click', function() {
+            RL.setReadOnly(!RL.filter_readonly), RL.setToOnly(!1), RL.setTaskOnly(!1);
+            RL.selectCategory("all"),
+            RL.view.setFilterTitle(), RL.build();
+        });
+    $filter_unread_button.cwMessageTip({
+        message: '未読のあるチャットを表示',
+        delay: TM.messagetip_delay
+    });
+    var $filter_toonly_button = $('<div class="roomListHeader__myChatButton" aria-label="自分宛ての未読のあるチャットを表示"><svg viewBox="0 0 10 10" class="roomListHeader__myChatIcon" width="16" height="16"><use fill-rule="evenodd" xlink:href="#icon_chatTimeLineTo"></use></svg></div>')
+        .on('click', function() {
+            RL.setReadOnly(!1), RL.setToOnly(!RL.filter_toonly), RL.setTaskOnly(!1);
+            RL.selectCategory("all"),
+            RL.view.setFilterTitle(), RL.build();
+        });
+    $filter_toonly_button.cwMessageTip({
+        message: '自分宛ての未読のあるチャットを表示',
+        delay: TM.messagetip_delay
+    });
+    $('#_sideChatMoveMyChat').after(
+        $filter_unread_button,
+        $filter_toonly_button
     );
     RL.__proto__.filtered_room_list_id = [];
     RL.__proto__.my_filter_category = {};

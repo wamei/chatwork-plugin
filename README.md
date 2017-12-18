@@ -15,7 +15,7 @@
 
 ## 導入
 chromeのextensionなのでダウンロードして拡張機能の「パッケージ化されてない拡張機能の読み込み」でとりあえずは・・・  
-その他の環境でもUserScriptを読み込めるのなら、``built/bundle.js``とか``built/bundle.css``とかを読みこめば動くのではないか
+その他の環境でもUserScriptを読み込めるのなら、``built/load.js``を読みこめば動くのではないか
 
 ## 機能
 

@@ -20,37 +20,36 @@ chromeのextensionなのでダウンロードして拡張機能の「パッケ�
 
 #### 画像をインラインで展開する
 チャットに貼られた画像リンクを自動でインラインに展開する  
-URLが「.gif, .png, .jpg, .jpeg」で終わっていれば設定なしで展開される
-![](./readme/inline-image.png)
+URLが「.gif, .png, .jpg, .jpeg」で終わっていれば設定なしで展開される  
+<img src="./readme/inline-image.png" width="600px">
   
 下図の設定箇所に記載されているURLから始まるリンクは末尾が上記の拡張子で終わっていなくても画像とみなして展開する  
-半角スペース区切りで複数指定できる
-![](./readme/setting-image.png)
+半角スペース区切りで複数指定できる  
+<img src="./readme/setting-image.png" width="400px">
 
 #### 画像をモーダル表示する
 インライン展開された画像をクリックするとモーダル表示を行う  
 再度クリックで通常の画面に戻る  
-![](./readme/modal-image.png)
+<img src="./readme/modal-image.png" width="600px">
 
 #### チャットルームをカテゴリで管理する
 Chatwork標準のカテゴリ機能を拡張  
 登録したすべてのカテゴリを一覧で表示し、カテゴリに含まれないチャットをその他でまとめる  
 カテゴリはカテゴリ名をクリックすることで折りたたむことも可能  
 一番上の「チャット一覧」をクリックすると従来の表示に戻る  
-![](./readme/group.png)
-![](./readme/group-open.png)
+<img src="./readme/group.png" width="200px">
+<img src="./readme/group-open.png" width="200px">
 
 #### チャットルームアイコンの変更
 チャット一覧にあるルームアイコンをクリックすることで編集画面が開き、自分の好きなものに変更できる  
-サーバ側のアイコンは書き換えず自分の表示だけをローカルに変更する
-![](./readme/change-icon.png)  
-![](./readme/changed-icon.png)
+サーバ側のアイコンは書き換えず自分の表示だけをローカルに変更する  
+<img src="./readme/change-icon.png" width="400px">  
+<img src="./readme/changed-icon.png" width="400px">
 
 #### 特定のワードを含むメッセージを通知する
-下図の設定箇所に記載したワードを含むメッセージをTO扱いにする
-![](./readme/setting-notify.png)
-
-![](./readme/notify.png)
+下図の設定箇所に記載したワードを含むメッセージをTO扱いにする  
+<img src="./readme/setting-notify.png" width="400px">  
+<img src="./readme/notify.png" width="400px">
 
 #### コードブロックのシンタックスハイライト
 コードブロックのコードがシンタックスハイライトされる

@@ -14,8 +14,13 @@
   - [タグの自動展開](#タグの自動展開)
 
 ## 導入
-chromeのextensionなのでダウンロードして拡張機能の「パッケージ化されてない拡張機能の読み込み」でとりあえずは・・・  
-その他の環境でもUserScriptを読み込めるのなら、``built/load.js``を読みこめば動くのではないか
+chromeのextensionなのでダウンロードして拡張機能の「パッケージ化されてない拡張機能の読み込み」で・・・  
+その他の環境でもUserScriptを読み込めるのなら、``built/load.js``を読みこめば動くのではないか  
+どうしようもない人のためのブックマークレット版
+```
+javascript:(function(d,s){s=d.createElement('script');s.src='https://wamei.github.io/chatwork-plugin/built/load.js';d.body.appendChild(s);})(document)
+```
+
 
 ## 機能
 

@@ -1,3 +1,4 @@
+import 'intersection-observer';
 import './chatwork/timelineview.js';
 import './chatwork/chatworksend.js';
 import './chatwork/timeline.js';

@@ -111,3 +111,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 #_selectRoomList {
   max-width: calc(100% - 24px * 4 - 8px * 2 - 4px - 8px);
 }
+
+.w_category_unread {
+  display: inline-block;
+  position: relative;
+  float: right;
+  margin-right: 10px;
+}

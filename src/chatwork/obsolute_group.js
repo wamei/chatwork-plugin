@@ -132,10 +132,10 @@ $(function(){
                     if ("contact" == t.filter_category && "contact" != a.type) continue; // wamei add
                     if ("group" == t.filter_category && "group" != a.type) continue; // wamei add
                     if ("mytask" == t.filter_category && 0 == a.mytask_num) continue; // wamei add
-                    t.my_filter_category_unread[fc] += p; // wamei add
+                    if (p > 0 ) t.my_filter_category_unread[fc] += 1; // wamei add
                     t.filtered_room_list_id.push(fc); // wamei add
-                    t.filter_remain_flag[a.id] = !0,
-                    t.filtered_room_list.push(n[d])
+                    t.filter_remain_flag[a.id] = !0;
+                    t.filtered_room_list.push(n[d]);
                 }
         }
         //------------------------
@@ -225,7 +225,7 @@ $(function(){
                         }
                         var unread = '';
                         if(a.model.my_filter_category[id[g]] && a.model.my_filter_category_unread[id[g]] > 0 && !show){
-                            unread = '<ul class="menuListTitle w_category_unread_'+id[g]+'" style="position:absolute;right:3px;top:0px;"><li><ul class="incomplete"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul></li></ul>';
+                            unread = '<ul class="w_category_unread w_category_unread_'+id[g]+'"><li><ul class="incomplete"><li role="listitem" class="_unreadBadge unread"><span class="icoFontActionUnread"></span>'+a.model.my_filter_category_unread[id[g]]+'</li></ul></li></ul>';
                         }
                         d += '<div id="_categoryDisplay_' + id[g] + '" class="chatCategoryTitle" style="cursor: pointer; background-color: rgb(211, 211, 211);"><span style="margin: 8px;" id="_categoryDisplayTitle_' + id[g] + '" class="categoryDisplayTitle">' + name + '</span>'+unread+'</div><ul role="list" class="menuListTitle cwTextUnselectable" id="_categoryDisplayList_'+id[g]+'" style="display:block;">';
                     }

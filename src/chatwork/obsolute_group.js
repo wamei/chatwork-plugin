@@ -34,37 +34,24 @@ $(function(){
         }
     };
     $('#_categoryDisplay').html('').css('visibility', 'hidden').appendTo('#_roomListArea');
-    $('#_chatCagegorySystemList').html('');
-    $('#_chatStatusTypeList').append(
-        $(`<li id="_chatStatusTypeTo" class="_chatStatusTypeListItem roomFilterListTooltip__listRoomItem roomFilterListTooltip__listRoomItem--selected">
-        <span class="_chatStatusTypeListItemName roomFilterListTooltip__listRoomItemName">自分宛ての未読があるチャット</span>
-        <span id="_chatToStatus" class="roomFilterListTooltip__badge" style="display: block;">
-          <span id="_chatToStatusText" class="roomFilterListTooltip__badgeText">()</span>
-        </span>
-      </li>`).on('click', function() {
-          RL.setReadOnly(!1), RL.setToOnly(!0), RL.setTaskOnly(!1);
-          RL.selectCategory("all"),
-          RL.view.setFilterTitle(), RL.build();
-      })
-    );
-    var $filter_unread_button = $('<div class="roomListHeader__myChatButton" aria-label="未読のあるチャットを表示"><svg viewBox="0 0 10 10" class="roomListHeader__myChatIcon" width="16" height="16"><use fill-rule="evenodd" xlink:href="#icon_unread"></use></svg></div>')
+    var $filter_unread_button = $('<div class="roomListHeader__myChatButton" aria-label="未読があるチャットを表示"><svg viewBox="0 0 10 10" class="roomListHeader__myChatIcon" width="16" height="16"><use fill-rule="evenodd" xlink:href="#icon_unread"></use></svg></div>')
         .on('click', function() {
             RL.setReadOnly(!RL.filter_readonly), RL.setToOnly(!1), RL.setTaskOnly(!1);
             RL.selectCategory("all"),
             RL.view.setFilterTitle(), RL.build();
         });
     $filter_unread_button.cwMessageTip({
-        message: '未読のあるチャットを表示',
+        message: '未読があるチャットを表示',
         delay: TM.messagetip_delay
     });
-    var $filter_toonly_button = $('<div class="roomListHeader__myChatButton" aria-label="自分宛ての未読のあるチャットを表示"><svg viewBox="0 0 10 10" class="roomListHeader__myChatIcon" width="16" height="16"><use fill-rule="evenodd" xlink:href="#icon_chatTimeLineTo"></use></svg></div>')
+    var $filter_toonly_button = $('<div class="roomListHeader__myChatButton" aria-label="Toがあるチャットを表示"><svg viewBox="0 0 10 10" class="roomListHeader__myChatIcon" width="16" height="16"><use fill-rule="evenodd" xlink:href="#icon_chatTimeLineTo"></use></svg></div>')
         .on('click', function() {
             RL.setReadOnly(!1), RL.setToOnly(!RL.filter_toonly), RL.setTaskOnly(!1);
             RL.selectCategory("all"),
             RL.view.setFilterTitle(), RL.build();
         });
     $filter_toonly_button.cwMessageTip({
-        message: '自分宛ての未読のあるチャットを表示',
+        message: 'Toがあるチャットを表示',
         delay: TM.messagetip_delay
     });
     $('#_sideChatMoveMyChat').after(
